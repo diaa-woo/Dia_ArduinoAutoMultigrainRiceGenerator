@@ -36,11 +36,11 @@ void loop() {
   }
   else if(!digitalRead(selectButton)) {
     digitalWrite(5, HIGH);
-    digitalWrite(Slave2, LOW);
+    digitalWrite(Slave1, LOW);
 
     SPI.transfer(count);
   
-    digitalWrite(Slave2, HIGH);
+    digitalWrite(Slave1, HIGH);
     
     delay(100);
     count = 0;
