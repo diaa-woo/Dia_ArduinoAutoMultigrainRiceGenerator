@@ -2,6 +2,10 @@
 #define CW 3
 #define CLK 2
 
+int pin1 = 4;
+int pin2 = 5;
+int pin3 = 6;
+
 void setup() {
 
   //begin set
@@ -12,6 +16,9 @@ void setup() {
   pinMode(MISO, OUTPUT);
   pinMode(CW, OUTPUT);
   pinMode(CLK, OUTPUT);
+  pinMode(pin1, INPUT);
+  pinMode(pin2, INPUT);
+  pinMode(pin3, INPUT);
 
 
   //SPI Slave Set
@@ -33,12 +40,14 @@ ISR (SPI_STC_vect) {
 }
 
 void loop() {
-  if(C == 1) {
-      digitalWrite(CW,LOW);
-      delayMicroseconds(1000);
+  
+  if(C == 'B') {
+    digitalWrite(CW, LOW);
+    while(digitalRead(pin1) == 0) {
       digitalWrite(CLK, HIGH);
-      delay(1000);
-      digitalWrite(CLK, LOW);
-      C = 0;
+      SPDR = 0;
+    }
+    digitalWrite(CLK, LOW);
+    SPDR = 1;
   }
 }
