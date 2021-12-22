@@ -4,8 +4,8 @@
 void setup() {
   pinMode(CW, OUTPUT);
   pinMode(CLK, OUTPUT);
-  digitalWrite(CW, LOW);
-  digitalWrite(CLK, HIGH);
+  digitalWrite(CW, 0);
+  digitalWrite(CLK, LO);
 }
 
 void loop() {

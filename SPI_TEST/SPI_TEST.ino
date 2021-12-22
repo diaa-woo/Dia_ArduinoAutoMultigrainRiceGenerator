@@ -1,6 +1,6 @@
-extern volatile unsigned long timer0_millis;
-
 #include <LiquidCrystal_I2C.h>
+
+extern volatile unsigned long timer0_millis;
 #include <SPI.h>
 #include <Wire.h>
 
@@ -92,6 +92,106 @@ void modeAuto() {
           SPI.transfer(14);
           delay(4500);
           digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin2) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(22);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin3) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(31);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(21);
+          while(digitalRead(pin1) == 1);
+          SPI.transfer(20);
+          digitalWrite(Slave1, HIGH);
+        }
+        else if(autoMode[modeCount] == 'G') {
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin1) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(12);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin2) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(23);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin3) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(35);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(21);
+          while(digitalRead(pin1) == 1);
+          SPI.transfer(20);
+          digitalWrite(Slave1, HIGH);
+        }
+        else if(autoMode[modeCount] == 'R') {
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin1) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(17);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin2) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(21);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(11);
+          while(digitalRead(pin3) == 1);
+          SPI.transfer(10);
+          digitalWrite(Slave1, HIGH);
+          digitalWrite(Slave2, LOW);
+          SPI.transfer(35);
+          delay(4500);
+          digitalWrite(Slave2, HIGH);
+
+          digitalWrite(Slave1, LOW);
+          SPI.transfer(21);
+          while(digitalRead(pin1) == 1);
+          SPI.transfer(20);
+          digitalWrite(Slave1, HIGH);
         }
         digitalWrite(Slave1, HIGH);
         break;
@@ -157,7 +257,7 @@ void setup() {
 
 
   //IIC set
-  lcd.init();
+  lcd.begin();
   lcd.backlight();
   Serial.println("lcd setup completely");
 

@@ -22,6 +22,7 @@ void setup() {
   SPCR &= ~_BV(MSTR);
   SPCR |= _BV(SPIE);
 
+  digitalWrite(CW, HIGH);
 
   //set end
 }
@@ -36,17 +37,32 @@ ISR (SPI_STC_vect) {
 
 void loop() {
   if(C == 11) {
+    digitalWrite(CLK, LOW);
+    delay(100);
     digitalWrite(CW, HIGH);
     B = C;
     while(B == 11) {
       B = C;
-      Serial.println(B);
       digitalWrite(CLK, HIGH);
       delayMicroseconds(1000);
       digitalWrite(CLK, LOW);
       delayMicroseconds(1000);
     }
-    Serial.println("Break");
+  }
+  else if(C == 21) {
+    digitalWrite(CLK, LOW);
+    delay(100);
+    digitalWrite(CW, LOW);
+    B = C;
+    while(B == 21) {
+      B = C;
+      digitalWrite(CLK, HIGH);
+      delayMicroseconds(1000);
+      digitalWrite(CLK, LOW);
+      delayMicroseconds(1000);
+    }
+    delay(100);
+    
   }
   else digitalWrite(CLK, LOW);
   
