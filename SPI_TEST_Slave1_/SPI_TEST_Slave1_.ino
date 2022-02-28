@@ -39,8 +39,12 @@ void loop() {
   if(C == 11) {
     digitalWrite(CLK, LOW);
     B = C;
-    while(B == 11) {
+    while(1) {
       B = C;
+      if(B == 10) {
+        Serial.println("Change");
+        break;
+      }
       digitalWrite(CLK, HIGH);
       delayMicroseconds(1000);
       digitalWrite(CLK, LOW);
@@ -52,14 +56,18 @@ void loop() {
     delay(500);
     digitalWrite(CW, 0);
     B = C;
-    while(B == 21) {
+    while(1) {
       B = C;
+      if(B == 20) {
+        Serial.println("Change");
+        break;
+      }
       digitalWrite(CLK, HIGH);
       delayMicroseconds(1000);
       digitalWrite(CLK, LOW);
       delayMicroseconds(1000);
     }
-    delay(100);
+    delay(10);
     digitalWrite(CW, 1);
   }
   else digitalWrite(CLK, LOW);
