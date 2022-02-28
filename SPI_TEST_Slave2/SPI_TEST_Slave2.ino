@@ -5,8 +5,8 @@ Servo servo1;
 Servo servo2;
 Servo servo3;
 
-int motor1 = 2;
-int motor2 = 3;
+int motor
+r2 = 3;
 int motor3 = 4;
 
 int runServo(int motorNum, int clockSec) {
