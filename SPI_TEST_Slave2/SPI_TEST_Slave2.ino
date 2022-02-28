@@ -11,17 +11,17 @@ int motor3 = 4;
 
 int runServo(int motorNum, int clockSec) {
   if(motorNum == 1) {
-    servo1.write(115);
+    servo1.write(130);
     delay(clockSec*1000);
     servo1.write(90);
   }
   else if(motorNum == 2) {
-    servo2.write(115);
+    servo2.write(130);
     delay(clockSec*1000);
     servo2.write(90);
   }
   else if(motorNum == 3) {
-    servo3.write(115);
+    servo3.write(130);
     delay(clockSec*1000);
     servo3.write(90);
   }
