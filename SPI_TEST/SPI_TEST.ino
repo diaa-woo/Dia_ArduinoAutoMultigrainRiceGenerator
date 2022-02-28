@@ -1,4 +1,17 @@
+/*----------------------------------------------------
+  Manual
+
+  SPI: control Servo
+    first: Servo Num, Second: run time
+    ex) SPI.transfer(14);
+        -> fisrt Servo select, run 4 seconds
+    ex) SPI.transfer(22);
+        -> second Servo select, run 1 second
+ 
+------------------------------------------------------*/
+
 #include <LiquidCrystal_I2C.h>
+
 
 extern volatile unsigned long timer0_millis;
 #include <SPI.h>
@@ -7,6 +20,8 @@ extern volatile unsigned long timer0_millis;
 #define Slave1 9
 #define Slave2 10
 #define DEBUG_LED 5
+#define STEP_MOTOR_ON 11
+#define STEP_MOTOR_OFF 10
 
 //setup IIC LCD
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -88,9 +103,9 @@ void modeAuto() {
         }
         else if(autoMode[modeCount] == 'G') {
           digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
+          SPI.transfer(STEP_MOTOR_ON);
           while(digitalRead(pin1) == 1);
-          SPI.transfer(10);
+          SPI.transfer(STEP_MOTOR_OFF);
           digitalWrite(Slave1, HIGH);
           digitalWrite(Slave2, LOW);
           SPI.transfer(12);
@@ -98,9 +113,9 @@ void modeAuto() {
           digitalWrite(Slave2, HIGH);
 
           digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
+          SPI.transfer(STEP_MOTOR_ON);
           while(digitalRead(pin2) == 1);
-          SPI.transfer(10);
+          SPI.transfer(STEP_MOTOR_OFF);
           digitalWrite(Slave1, HIGH);
           digitalWrite(Slave2, LOW);
           SPI.transfer(23);
@@ -108,9 +123,9 @@ void modeAuto() {
           digitalWrite(Slave2, HIGH);
 
           digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
+          SPI.transfer(STEP_MOTOR_ON);
           while(digitalRead(pin3) == 1);
-          SPI.transfer(10);
+          SPI.transfer(STEP_MOTOR_OFF);
           digitalWrite(Slave1, HIGH);
           digitalWrite(Slave2, LOW);
           SPI.transfer(35);
@@ -125,9 +140,9 @@ void modeAuto() {
         }
         else if(autoMode[modeCount] == 'R') {
           digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
+          SPI.transfer(STEP_MOTOR_ON);
           while(digitalRead(pin1) == 1);
-          SPI.transfer(10);
+          SPI.transfer(STEP_MOTOR_OFF);
           digitalWrite(Slave1, HIGH);
           digitalWrite(Slave2, LOW);
           SPI.transfer(17);
@@ -135,9 +150,9 @@ void modeAuto() {
           digitalWrite(Slave2, HIGH);
 
           digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
+          SPI.transfer(STEP_MOTOR_ON);
           while(digitalRead(pin2) == 1);
-          SPI.transfer(10);
+          SPI.transfer(STEP_MOTOR_OFF);
           digitalWrite(Slave1, HIGH);
           digitalWrite(Slave2, LOW);
           SPI.transfer(21);
@@ -145,9 +160,9 @@ void modeAuto() {
           digitalWrite(Slave2, HIGH);
 
           digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
+          SPI.transfer(STEP_MOTOR_ON);
           while(digitalRead(pin3) == 1);
-          SPI.transfer(10);
+          SPI.transfer(STEP_MOTOR_OFF);
           digitalWrite(Slave1, HIGH);
           digitalWrite(Slave2, LOW);
           SPI.transfer(35);
@@ -299,9 +314,9 @@ void loop() {
 
 void auto_b() {
   digitalWrite(Slave1, LOW);
-  SPI.transfer(11);
+  SPI.transfer(STEP_MOTOR_ON);
   while(digitalRead(pin1) == 1);
-  SPI.transfer(10);
+  SPI.transfer(STEP_MOTOR_OFF);
   digitalWrite(Slave1, HIGH);
   digitalWrite(Slave2, LOW);
   SPI.transfer(14);
@@ -309,9 +324,9 @@ void auto_b() {
   digitalWrite(Slave2, HIGH);
 
   digitalWrite(Slave1, LOW);
-  SPI.transfer(11);
+  SPI.transfer(STEP_MOTOR_ON);
   while(digitalRead(pin2) == 1);
-  SPI.transfer(10);
+  SPI.transfer(STEP_MOTOR_OFF);
   digitalWrite(Slave1, HIGH);
   digitalWrite(Slave2, LOW);
   SPI.transfer(22);
@@ -319,9 +334,9 @@ void auto_b() {
   digitalWrite(Slave2, HIGH);
 
   digitalWrite(Slave1, LOW);
-  SPI.transfer(11);
+  SPI.transfer(STEP_MOTOR_ON);
   while(digitalRead(pin3) == 1);
-  SPI.transfer(10);
+  SPI.transfer(STEP_MOTOR_OFF);
   digitalWrite(Slave1, HIGH);
   digitalWrite(Slave2, LOW);
   SPI.transfer(31);
