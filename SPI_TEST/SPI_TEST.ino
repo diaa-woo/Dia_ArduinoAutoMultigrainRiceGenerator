@@ -28,6 +28,7 @@ unsigned long time = millis();
 
 byte C = 0;
 
+void auto_b();
 
 void modeAuto() {
   char autoMode[3] = {'B','G','R'};
@@ -83,41 +84,7 @@ void modeAuto() {
         lcd.setCursor(0,0);
         lcd.print("Runnning...");
         if(autoMode[modeCount] == 'B') {
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
-          while(digitalRead(pin1) == 1);
-          SPI.transfer(10);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(14);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
-          while(digitalRead(pin2) == 1);
-          SPI.transfer(10);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(22);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(11);
-          while(digitalRead(pin3) == 1);
-          SPI.transfer(10);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(31);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(21);
-          while(digitalRead(pin1) == 1);
-          SPI.transfer(20);
-          digitalWrite(Slave1, HIGH);
+          auto_b();
         }
         else if(autoMode[modeCount] == 'G') {
           digitalWrite(Slave1, LOW);
@@ -328,4 +295,43 @@ void loop() {
       past = time;
     }
   digitalWrite(DEBUG_LED, LOW);
+}
+
+void auto_b() {
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(11);
+  while(digitalRead(pin1) == 1);
+  SPI.transfer(10);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(14);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(11);
+  while(digitalRead(pin2) == 1);
+  SPI.transfer(10);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(22);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(11);
+  while(digitalRead(pin3) == 1);
+  SPI.transfer(10);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(31);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+ 
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(21);
+  while(digitalRead(pin1) == 1);
+  SPI.transfer(20);
+  digitalWrite(Slave1, HIGH);
+  return;
 }
