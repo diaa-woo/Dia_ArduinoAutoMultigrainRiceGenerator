@@ -22,7 +22,7 @@ void setup() {
   SPCR &= ~_BV(MSTR);
   SPCR |= _BV(SPIE);
 
-  digitalWrite(CW, HIGH);
+  digitalWrite(CW, 1);
 
   //set end
 }
@@ -38,8 +38,6 @@ ISR (SPI_STC_vect) {
 void loop() {
   if(C == 11) {
     digitalWrite(CLK, LOW);
-    delay(100);
-    digitalWrite(CW, HIGH);
     B = C;
     while(B == 11) {
       B = C;
@@ -51,8 +49,8 @@ void loop() {
   }
   else if(C == 21) {
     digitalWrite(CLK, LOW);
-    delay(100);
-    digitalWrite(CW, LOW);
+    delay(500);
+    digitalWrite(CW, 0);
     B = C;
     while(B == 21) {
       B = C;
@@ -62,7 +60,7 @@ void loop() {
       delayMicroseconds(1000);
     }
     delay(100);
-    
+    digitalWrite(CW, 1);
   }
   else digitalWrite(CLK, LOW);
   
