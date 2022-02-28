@@ -32,9 +32,9 @@ int selectButton = 4;
 int mode = 1;
 int select = 0;
 int buf = 1;
-int pin1 = 6;
-int pin2 = 7;
-int pin3 = 8;
+int pin1 = 6;  //photo Interrupt pin1
+int pin2 = 7;  //photo Interrupt pin2
+int pin3 = 8;  //photo Interrupt pin3
 
 
 unsigned long past = 0;
@@ -43,7 +43,13 @@ unsigned long time = millis();
 
 byte C = 0;
 
-void auto_b();
+
+/*-----------------------------------------------------------
+   function Area
+-------------------------------------------------------------*/
+void auto_B();
+void auto_G();
+void auto_R();
 
 void modeAuto() {
   char autoMode[3] = {'B','G','R'};
@@ -99,81 +105,13 @@ void modeAuto() {
         lcd.setCursor(0,0);
         lcd.print("Runnning...");
         if(autoMode[modeCount] == 'B') {
-          auto_b();
+          auto_B();
         }
         else if(autoMode[modeCount] == 'G') {
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(STEP_MOTOR_ON);
-          while(digitalRead(pin1) == 1);
-          SPI.transfer(STEP_MOTOR_OFF);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(12);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(STEP_MOTOR_ON);
-          while(digitalRead(pin2) == 1);
-          SPI.transfer(STEP_MOTOR_OFF);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(23);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(STEP_MOTOR_ON);
-          while(digitalRead(pin3) == 1);
-          SPI.transfer(STEP_MOTOR_OFF);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(35);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(21);
-          while(digitalRead(pin1) == 1);
-          SPI.transfer(20);
-          digitalWrite(Slave1, HIGH);
+          auto_G();
         }
         else if(autoMode[modeCount] == 'R') {
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(STEP_MOTOR_ON);
-          while(digitalRead(pin1) == 1);
-          SPI.transfer(STEP_MOTOR_OFF);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(17);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(STEP_MOTOR_ON);
-          while(digitalRead(pin2) == 1);
-          SPI.transfer(STEP_MOTOR_OFF);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(21);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(STEP_MOTOR_ON);
-          while(digitalRead(pin3) == 1);
-          SPI.transfer(STEP_MOTOR_OFF);
-          digitalWrite(Slave1, HIGH);
-          digitalWrite(Slave2, LOW);
-          SPI.transfer(35);
-          delay(4500);
-          digitalWrite(Slave2, HIGH);
-
-          digitalWrite(Slave1, LOW);
-          SPI.transfer(21);
-          while(digitalRead(pin1) == 1);
-          SPI.transfer(20);
-          digitalWrite(Slave1, HIGH);
+          auto_R();
         }
         digitalWrite(Slave1, HIGH);
         break;
@@ -312,7 +250,7 @@ void loop() {
   digitalWrite(DEBUG_LED, LOW);
 }
 
-void auto_b() {
+void auto_B() {
   digitalWrite(Slave1, LOW);
   SPI.transfer(STEP_MOTOR_ON);
   while(digitalRead(pin1) == 1);
@@ -349,4 +287,80 @@ void auto_b() {
   SPI.transfer(20);
   digitalWrite(Slave1, HIGH);
   return;
+}
+
+void auto_G() {
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(STEP_MOTOR_ON);
+  while(digitalRead(pin1) == 1);
+  SPI.transfer(STEP_MOTOR_OFF);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(12);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(STEP_MOTOR_ON);
+  while(digitalRead(pin2) == 1);
+  SPI.transfer(STEP_MOTOR_OFF);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(23);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(STEP_MOTOR_ON);
+  while(digitalRead(pin3) == 1);
+  SPI.transfer(STEP_MOTOR_OFF);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(35);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(21);
+  while(digitalRead(pin1) == 1);
+  SPI.transfer(20);
+  digitalWrite(Slave1, HIGH);
+}
+
+void auto_R() {
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(STEP_MOTOR_ON);
+  while(digitalRead(pin1) == 1);
+  SPI.transfer(STEP_MOTOR_OFF);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(17);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(STEP_MOTOR_ON);
+  while(digitalRead(pin2) == 1);
+  SPI.transfer(STEP_MOTOR_OFF);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(21);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(STEP_MOTOR_ON);
+  while(digitalRead(pin3) == 1);
+  SPI.transfer(STEP_MOTOR_OFF);
+  digitalWrite(Slave1, HIGH);
+  digitalWrite(Slave2, LOW);
+  SPI.transfer(35);
+  delay(4500);
+  digitalWrite(Slave2, HIGH);
+
+  digitalWrite(Slave1, LOW);
+  SPI.transfer(21);
+  while(digitalRead(pin1) == 1);
+  SPI.transfer(20);
+  digitalWrite(Slave1, HIGH);
 }
