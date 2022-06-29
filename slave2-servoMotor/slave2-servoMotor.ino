@@ -1,3 +1,13 @@
+/*
+  **************************************
+  *                                    *
+  *                                    * 
+  *         MADE BY diadntjr           *
+  *                                    *
+  *                                    *
+  *                                    *
+  **************************************
+*/
 #include<SPI.h>
 #include<Servo.h>
 
@@ -5,9 +15,24 @@ Servo servo1;
 Servo servo2;
 Servo servo3;
 
-int motor
-r2 = 3;
+int motor1 = 2;
+int motor2 = 3;
 int motor3 = 4;
+
+void testServo() {
+  servo1.write(50);
+  delay(500);
+  servo2.write(50);
+  delay(500);
+  servo3.write(50);
+  delay(500);
+  servo1.write(130);
+  delay(500);
+  servo2.write(130);
+  delay(500);
+  servo3.write(130);
+  delay(500);
+}
 
 int runServo(int motorNum, int clockSec) {
   if(motorNum == 1) {
@@ -38,12 +63,16 @@ void setup() {
   servo2.attach(motor2);
   servo3.attach(motor3);
   
-  
   SPI.setClockDivider(SPI_CLOCK_DIV16);
 
   SPCR |= _BV(SPE);
   SPCR &= ~_BV(MSTR);
   SPCR |= _BV(SPIE);
+
+  //For debugging
+  Serial.println("testing servo....");
+  testServo();
+  Serial.println("Complete!");
 
   servo1.write(90);
   servo2.write(90);
