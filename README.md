@@ -14,7 +14,7 @@
 
 팀원과 역할: <a href="https://github.com/diadntjr">diadntjr</a>(황우석, 팀장, 메인), <a href="https://github.com/KEHyeon">KEHyean</a>(김태현, 서보모터 제어), <a href="https://github.com/sookyoungwoo">sookyoungwoo</a>(우수경, 기록 및 디자인), <a href="https://github.com/Lovingcats">lovingcats</a>(조용제, 스크류 모터 제어)   
    
-Special Thanks: <a href="https://github.com/sjwoong1010">sjwoong1010</a>
+Special Thanks to <a href="https://github.com/sjwoong1010" target="__blank">sjwoong1010</a>
 
 ## 프로젝트 소개
 
