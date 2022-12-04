@@ -1,8 +1,5 @@
 # Dia_ArduinoAutoMultigrainRiceGenerator
 
-> **Note**   
-> 상품 홍보하는게 아닙니다! ㅋㅋ
-
 ## 프로젝트 개요
 
 만든 일자: 2021.08 ~ 2021.12   
